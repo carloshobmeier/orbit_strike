@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+    color: white;
+}
+
+#cenario {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-image: url(/videos/spac.mp4);
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+#cenario video#video-fundo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Mantém o vídeo atrás de outros elementos */
+    background-size: cover;
+}
+
+
+#menu {
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#nave {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: url(/imagens/nave_branca.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: 0;
+}
+
+#botaoPausa {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.166);
+    color: black;
+    padding: 30px;
+    border-radius: 50%;
+}
+
+
+#iniciar {
+    position: absolute;
+    color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+@keyframes animarCenario {
+    from {
+        background-position-y: 100%;
+    }
+    to {
+        background-position-y: 0%;  
+    }
+}

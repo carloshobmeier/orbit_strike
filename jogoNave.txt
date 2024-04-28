@@ -1,0 +1,66 @@
+
+FAZER AS ARTES DO JOGO
+
+
+menu inicial com os nomes dos integrantes da equipe
+
+menu com
+  jogar
+  dificuldades
+	easy
+	normal
+	hard
+  sobre (nomes dos integrantes do jogo)
+  sair
+
+2 jogadores (wasd e setas)
+
+colocar scoreboard salvo em txt (mostrar ao gameover)
+
+colocar barras de vida nos inimigos
+
+colocar ponto de milhar na pontuação
+
+tiro secundário (míssil que atinge a nave mais adiantada) - isnta kill
+
+
+jogador escolhe 3 opções de nave (cada um ter um diferencial
+
+sprites diferentes para quando a nave vai para a direita/esquerda
+
+power-ups com níveis diferentes de tiro
+  3 tipos diferentes de tiro (um tira uma vida, outro 2 e outro 3)
+
+poder especial (ex: escudo por 5 segundos; laser até o final da tela destruindo tudo instantaneamente)
+
+verificar como fazer uma fase de fato, vindo sempre do mesmo lugar
+
+vários inimigos diferentes (com velocidades diferentes)
+alguns atiram
+
+gerar música de fundo
+ver como faz para ter um terreno e ir 'andando pra frente' nele.
+
+fazer um chefão
+
+
+- no game over relatório com:
+total de naves destruídas
+distância percorrida
+tiros disparados
+
+
+
+
+
+
+
+
+
+
+FEITO:
+pressionar ESC para pausar
+depois do game over tem que ter um botão para jogar novamente
+
+
+

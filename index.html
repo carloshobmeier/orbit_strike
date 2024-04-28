@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Codigo Base, html, css, javascript">
+    <meta name="keywords" content="Codigo Base, html, css, javascript">
+    <meta name="author" content="Johnny Peffer Oficial">
+    <link rel="shortcut icon" type="image/x-icon" href="/imagens/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/estilos/style.css">
+    <title>Jogo Nave Espacial</title>
+  </head>
+  <body>
+    <div id="cenario">
+      <video autoplay loop muted playsinline id="video-fundo">
+        <source src="/videos/spac.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos.
+      </video>
+      <div id="menu">
+        <div id="vida">Vida: 10</div>
+        <div id="pontos">Pontos: 0</div>
+      </div>
+      <div id="nave"></div>
+      <button type="button" id="iniciar" onclick="iniciarJogo()">Iniciar Jogo</button>
+      <button id="botaoPausa">Pausado</button>
+    </div>
+    <script src="/javascripts/script.js" defer></script>
+  </body>
+  
+</html>
