@@ -1,9 +1,17 @@
 const botaoIniciar = document.getElementById("iniciar");
+const botaoSobre = document.getElementById("sobre")
+const botaoEscolhaNave = document.getElementById("escolhaNave")
+const botaoEscolhaFase = document.getElementById("escolhaFase")
+const botaoSair = document.getElementById("sair")
+const botaoDificuldade = document.getElementById("dificuldade")
 const cenario = document.getElementById("cenario");
 const nave = document.getElementById("nave");
 const vida = document.getElementById("vida");
 const pontos = document.getElementById("pontos");
 const audioJogo = new Audio("/audios/despair_metal.mp3");
+
+const NaveEscolha = document.getElementById("nave")
+
 
 const larguraCenario = cenario.offsetWidth;
 const alturaCenario = cenario.offsetHeight;
@@ -316,6 +324,28 @@ const gameOver = () => {
   });
 }
 
+
+function abrirModalEscolhaNave() {
+  document.getElementById("modalEscolhaNave").style.display = "block";
+}
+
+function fecharModalEscolhaNave() {
+  document.getElementById("modalEscolhaNave").style.display = "none";
+}
+
+function selecionarNaveBranca() {
+  NaveEscolha.style.backgroundImage = "url('/imagens/nave_branca.png')";
+}
+
+function selecionarNaveVerde() {
+  NaveEscolha.style.backgroundImage = "url('/imagens/nave_verde.png')";
+}
+
+
+
+
+
+
 const iniciarJogo = () => {
   document.addEventListener("keydown", teclaPressionada);
   document.addEventListener("keyup", teclaSolta);
@@ -333,6 +363,11 @@ const iniciarJogo = () => {
   checaNaveInimigas = setInterval(naveInimigas, 1000);
   checaTiros = setInterval(atirar, 10);
   botaoIniciar.style.display = "none";
+  botaoSobre.style.display = "none";
+  botaoSair.style.display = "none";
+  botaoEscolhaFase.style.display = "none";
+  botaoEscolhaNave.style.display = "none";
+  botaoDificuldade.style.display = "none";
   cenario.style.animation = "animarCenario 10s infinite linear";
   audioJogo.loop = true;
   audioJogo.play();

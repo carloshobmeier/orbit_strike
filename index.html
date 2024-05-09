@@ -21,9 +21,31 @@
         <div id="pontos">Pontos: 0</div>
       </div>
       <div id="nave"></div>
-      <button type="button" id="iniciar" onclick="iniciarJogo()">Iniciar Jogo</button>
-      <button id="botaoPausa">Pausado</button>
+      <div id="telaInicial">
+        <button type="button" id="iniciar" class="btn-menu" onclick="iniciarJogo()">Iniciar Jogo</button>
+        <button type="button" id="dificuldade" class="btn-menu" onclick="">Dificuldade</button>
+        <button type="button" id="escolhaNave" class="btn-menu" onclick="abrirModalEscolhaNave()">Escolher Nave</button>
+        <button type="button" id="escolhaFase" class="btn-menu" onclick="">Escolher Fase</button>
+        <button type="button" id="sobre" class="btn-menu" onclick="">Sobre</button>
+        <button type="button" id="sair" class="btn-menu" onclick="">Sair</button>
+        <button id="botaoPausa">Pausado</button>
+      </div>
     </div>
+
+    <div id="modalEscolhaNave" class="modal">
+      <div id="escolha_da_nave">
+          <div class="naves" onclick="selecionarNaveBranca()">
+              <img src="imagens/nave_branca.png" alt="Nave Branca">
+          </div>
+          <div class="naves" onclick="selecionarNaveVerde()">
+              <img src="imagens/nave_verde.png" alt="Nave Verde">
+          </div>
+          <button type="button" id="sair" class="btn-menu" onclick="fecharModalEscolhaNave()">Voltar</button>
+      </div>
+    </div>
+
+
+
     <script src="/javascripts/script.js" defer></script>
   </body>
   

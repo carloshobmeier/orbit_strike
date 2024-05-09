@@ -61,10 +61,6 @@
 
 #botaoPausa {
     display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.166);
     color: black;
     padding: 30px;
@@ -72,15 +68,30 @@
 }
 
 
-#iniciar {
+
+#telaInicial {
     position: absolute;
     color: black;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: block;
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os botões */
     border-radius: 5px;
     padding: 10px 20px;
+}
+
+.btn-menu {
+    color: black;
+    border-radius: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 25px;
+    padding-right: 25px;
     cursor: pointer;
 }
 
@@ -91,4 +102,42 @@
     to {
         background-position-y: 0%;  
     }
+}
+
+
+.naves {
+    display: inline-block; /* Exibe os elementos lado a lado */
+    margin: 10px 20px; /* Espaço entre as naves */
+}
+
+.naves img {
+    width: 200px; /* Largura das imagens das naves */
+    height: auto; /* Altura ajustada automaticamente */
+}
+
+
+
+
+
+
+
+.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fixo na tela */
+    z-index: 1000; /* Garante que fique sobre outros conteúdos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Permite rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro semi-transparente */
+}
+
+#escolha_da_nave {
+    background-color: rgba(0, 0, 0, 0.864);
+    margin: 15% auto; /* Centraliza verticalmente e horizontalmente */
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%; /* Largura do conteúdo do modal */
+    text-align: center; /* Alinha o texto ao centro */
 }
