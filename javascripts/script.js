@@ -4,6 +4,7 @@ const botaoEscolhaNave = document.getElementById("escolhaNave")
 const botaoEscolhaFase = document.getElementById("escolhaFase")
 const botaoSair = document.getElementById("sair")
 const botaoDificuldade = document.getElementById("dificuldade")
+const botaoInimigo = document.getElementById("inimigos")
 const cenario = document.getElementById("cenario");
 const nave = document.getElementById("nave");
 const vida = document.getElementById("vida");
@@ -11,6 +12,7 @@ const pontos = document.getElementById("pontos");
 const audioJogo = new Audio("/audios/despair_metal.mp3");
 
 const NaveEscolha = document.getElementById("nave")
+const FaseEscolha = document.getElementById("fundo")
 
 
 const larguraCenario = cenario.offsetWidth;
@@ -19,20 +21,25 @@ const alturaCenario = cenario.offsetHeight;
 const larguraNave = nave.offsetWidth;
 const alturaCeNave = nave.offsetHeight;
 
-const velocidadeNave = 20;
+const velocidadeNave = 2;
 const velocidadeTiro = 25;
-const velocidadeNaveInimigas = 4;
+const velocidadeNaveInimigas = 3.5;
+const velocidadeNaveInimigasRapida = 6;
 
 let estaAtirando = false;
 let jogoPausado = false;
 
 let tiroAtual = 0;
 
-let vidaAtual = 10;
-let pontosAtual = 0;
+let vidaInicial = 10;
+let pontosIniciais = 0;
+
+let vidaAtual = vidaInicial;
+let pontosAtual = pontosIniciais;
 
 let checaMoveNaveInimigas;
 let checaNaveInimigas;
+let checaNaveInimigasRapidas;
 let checaMoveTiros;
 let checaMoveNave;
 let checaColisao;
@@ -155,6 +162,22 @@ const naveInimigas = () => {
   cenario.appendChild(inimigo);
 }
 
+const naveInimigaRapida = () => {
+  const inimigo = document.createElement("div");
+  inimigo.className = "inimigo rapida";  // Uma nova classe para estilos específicos
+  inimigo.style.position = "absolute";
+  inimigo.setAttribute("data-vida", 5);  // Define a vida da nave
+  inimigo.setAttribute("data-tipo", "rapida");  // Uma nova data attribute para identificar o tipo
+  inimigo.style.width = "100px";
+  inimigo.style.height = "100px";
+  inimigo.style.backgroundImage = "url(/imagens/nave_amarela.png)";
+  inimigo.style.backgroundPosition = "center";
+  inimigo.style.backgroundRepeat = "no-repeat";
+  inimigo.style.backgroundSize = "contain";
+  inimigo.style.left = Math.floor(Math.random() * (larguraCenario - 100)) + "px";
+  inimigo.style.top = "-100px";
+  cenario.appendChild(inimigo);
+}
 
 
 
@@ -163,13 +186,18 @@ const moveNaveInimigas = () => {
   for (let i = 0; i < navaInimigas.length; i++) {
     if (navaInimigas[i]) {
       let posicaoTopNaveInimiga = navaInimigas[i].offsetTop;
-      let posicaoLeftNaveInimiga = navaInimigas[i].offsetLeft;
-      posicaoTopNaveInimiga += velocidadeNaveInimigas;
+      // Define a velocidade com base na classe da nave
+      let velocidadeAtual = navaInimigas[i].classList.contains('rapida') ? velocidadeNaveInimigasRapida : velocidadeNaveInimigas;
+      posicaoTopNaveInimiga += velocidadeAtual;
       navaInimigas[i].style.top = posicaoTopNaveInimiga + "px";
+
       if (posicaoTopNaveInimiga > alturaCenario) {
-        vidaAtual -= 1;
-        vida.textContent = `Vida: ${vidaAtual}`;
-        explosaoNaveInimigaDestruida(posicaoLeftNaveInimiga);
+        // Se a nave inimiga passar pela tela, verificar se é do tipo rápido
+        if (!navaInimigas[i].classList.contains('rapida')) {
+          vidaAtual -= 1;  // Reduz a vida somente se não for uma nave rápida
+          vida.textContent = `Vida: ${vidaAtual}`;
+        }
+        explosaoNaveInimigaDestruida(navaInimigas[i].offsetLeft);
         if (vidaAtual <= 0) {
           gameOver();
         }
@@ -186,29 +214,32 @@ const colisao = () => {
     todosTiros.forEach((tiro) => {
       const colisaoNaveInimiga = naveInimiga.getBoundingClientRect();
       const colisaoTiro = tiro.getBoundingClientRect();
-      const posicaoNaveInimigaLeft = naveInimiga.offsetLeft;
-      const posicaoNaveInimigaTop = naveInimiga.offsetTop;
-      let vidaAtualNaveInimiga = parseInt(naveInimiga.getAttribute("data-vida"));
       if (
         colisaoNaveInimiga.left < colisaoTiro.right &&
         colisaoNaveInimiga.right > colisaoTiro.left &&
         colisaoNaveInimiga.top < colisaoTiro.bottom &&
         colisaoNaveInimiga.bottom > colisaoTiro.top
       ) {
+        let vidaAtualNaveInimiga = parseInt(naveInimiga.getAttribute("data-vida"));
         vidaAtualNaveInimiga--;
         tiro.remove();
         if (vidaAtualNaveInimiga === 0) {
-          pontosAtual += 10;
+          // Captura as posições antes de remover a nave
+          const posicaoLeftNaveInimiga = naveInimiga.offsetLeft;
+          const posicaoTopNaveInimiga = naveInimiga.offsetTop;
+          const pontosPorNave = naveInimiga.classList.contains('rapida') ? 100 : 10;
+          pontosAtual += pontosPorNave;
           pontos.textContent = `Pontos: ${pontosAtual}`;
-          naveInimiga.remove();
-          naveInimigaDestruida(posicaoNaveInimigaLeft, posicaoNaveInimigaTop);
+          naveInimiga.remove();  // Remove a nave inimiga do DOM
+          naveInimigaDestruida(posicaoLeftNaveInimiga, posicaoTopNaveInimiga);  // Chama a função de destruição passando as posições
         } else {
           naveInimiga.setAttribute("data-vida", vidaAtualNaveInimiga);
         }
       }
-    })
-  })
+    });
+  });
 }
+
 
 const naveInimigaDestruida = (posicaoLeftNaveInimiga, posicaoTopNaveInimiga) => {
   const naveInimigaDestruida = document.createElement("div");
@@ -269,28 +300,34 @@ const audioPassou = () => {
 function pausarJogo() {
   if (!jogoPausado) {
     jogoPausado = true;
+    // Limpar todos os intervalos para evitar duplicações
     clearInterval(checaMoveNave);
     clearInterval(checaMoveTiros);
     clearInterval(checaMoveNaveInimigas);
     clearInterval(checaNaveInimigas);
+    clearInterval(checaNaveInimigasRapidas);
     clearInterval(checaColisao);
+    clearInterval(checaTiros);
     document.getElementById('botaoPausa').style.display = 'block';
-
   }
 }
+
 
 function despausarJogo() {
   if (jogoPausado) {
     jogoPausado = false;
-    checaMoveNave = setInterval(moveNave, 50);
+    // Reiniciar os intervalos apenas uma vez para garantir que não haja duplicação
+    checaMoveNave = setInterval(moveNave, 5);
     checaMoveTiros = setInterval(moveTiros, 50);
     checaMoveNaveInimigas = setInterval(moveNaveInimigas, 50);
-    checaColisao = setInterval(colisao, 10);
     checaNaveInimigas = setInterval(naveInimigas, 1000);
-    
+    checaNaveInimigasRapidas = setInterval(naveInimigaRapida, 15000);
+    checaColisao = setInterval(colisao, 10);
+    checaTiros = setInterval(atirar, 10);
     document.getElementById('botaoPausa').style.display = 'none';
   }
 }
+
 
 
 const gameOver = () => {
@@ -298,31 +335,41 @@ const gameOver = () => {
   document.removeEventListener("keyup", teclaSolta);
   clearInterval(checaMoveNaveInimigas);
   clearInterval(checaNaveInimigas);
+  clearInterval(checaNaveInimigasRapidas);
   clearInterval(checaMoveTiros);
   clearInterval(checaMoveNave);
   clearInterval(checaColisao);
-  const perdeu = document.createElement("div");
-  perdeu.style.position = "absolute";
+
+  const buttonsContainer = document.createElement("div");
+  buttonsContainer.style.position = "absolute";
+  buttonsContainer.style.left = "50%";
+  buttonsContainer.style.top = "50%";
+  buttonsContainer.style.transform = "translate(-50%, -50%)";
+  buttonsContainer.style.display = "flex";
+  buttonsContainer.style.flexDirection = "column";
+  buttonsContainer.style.alignItems = "center";
+  cenario.appendChild(buttonsContainer);
+
+  const perdeu = document.createElement("button");
+  perdeu.id = "gameOverButton";
+  perdeu.className = "btn-menu";
   perdeu.innerHTML = "Game Over";
-  perdeu.style.backgroundColor = "white";
-  perdeu.style.color = "black";
-  perdeu.style.left = "50%";
-  perdeu.style.top = "50%";
-  perdeu.style.padding = "10px 20px";
-  perdeu.style.borderRadius = "5px";
-  perdeu.style.transform = "translate(-50%, -50%)";
-  cenario.appendChild(perdeu);
-  cenario.removeChild(nave);
+  perdeu.style.margin = "10px"; // Espaço entre os botões
+  buttonsContainer.appendChild(perdeu);
+  perdeu.onclick = sairDoJogo;
+
+  botaoIniciar.innerHTML = "Tentar Novamente";
+  botaoIniciar.style.display = "block";
+  botaoIniciar.style.margin = "10px"; // Espaço entre os botões
+  buttonsContainer.appendChild(botaoIniciar);
+
   cenario.style.animation = "none";
   const navesInimigas = document.querySelectorAll(".inimigo");
-  navesInimigas.forEach((inimigos) => {
-    inimigos.remove();
-  });
+  navesInimigas.forEach(inimigo => inimigo.remove());
   const todosTiros = document.querySelectorAll(".tiro");
-  todosTiros.forEach((tiro) => {
-    cenario.removeChild(tiro);
-  });
+  todosTiros.forEach(tiro => cenario.removeChild(tiro));
 }
+
 
 
 function abrirModalEscolhaNave() {
@@ -333,6 +380,26 @@ function fecharModalEscolhaNave() {
   document.getElementById("modalEscolhaNave").style.display = "none";
 }
 
+function abrirModalEscolhaFase() {
+  document.getElementById("modalEscolhaFase").style.display = "block";
+}
+
+function fecharModalEscolhaFase() {
+  document.getElementById("modalEscolhaFase").style.display = "none";
+}
+
+function abrirModalInimigos() {
+  document.getElementById("modalInimigos").style.display = "block";
+}
+
+function fecharModalInimigos() {
+  document.getElementById("modalInimigos").style.display = "none";
+}
+
+
+
+
+
 function selecionarNaveBranca() {
   NaveEscolha.style.backgroundImage = "url('/imagens/nave_branca.png')";
 }
@@ -341,7 +408,110 @@ function selecionarNaveVerde() {
   NaveEscolha.style.backgroundImage = "url('/imagens/nave_verde.png')";
 }
 
+function selecionarNaveAzul() {
+  NaveEscolha.style.backgroundImage = "url('/imagens/nave_azul.png')";
+}
 
+
+
+
+
+function selecionarFaseSpac1() {
+  const videoSource = document.getElementById('fundo'); // Certifique-se de que o ID 'fundo' está no <source> dentro do seu <video>
+  videoSource.src = '/videos/spac1.mp4';
+  document.getElementById('video-fundo').load(); // Para recarregar o vídeo
+}
+
+function selecionarFaseSpac2() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac2.mp4';
+  document.getElementById('video-fundo').load();
+}
+
+function selecionarFaseSpac3() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac3.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac4() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac4.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac5() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac5.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac6() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac6.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac7() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac7.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac8() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac8.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac9() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac9.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac10() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac10.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac11() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac11.mp4';
+  document.getElementById('video-fundo').load();
+}
+function selecionarFaseSpac12() {
+  const videoSource = document.getElementById('fundo');
+  videoSource.src = '/videos/spac12.mp4';
+  document.getElementById('video-fundo').load();
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip-text';
+  tooltip.innerHTML = '<div class="title"></div><div class="description"></div>';
+  document.body.appendChild(tooltip);
+
+  const fases = document.querySelectorAll('.fases, .naves, .naves_inimigas');
+  fases.forEach(function(fase) {
+    fase.addEventListener('mousemove', function(e) {
+      const title = fase.getAttribute('data-title');
+      const description = fase.getAttribute('data-description');
+      if (title || description) {
+        tooltip.querySelector('.title').textContent = title;
+        tooltip.querySelector('.description').textContent = description;
+        tooltip.style.left = (e.pageX + 15) + 'px';  // Slight offset from the cursor
+        tooltip.style.top = (e.pageY + 15) + 'px';
+        tooltip.style.opacity = 1;
+      }
+    });
+
+    fase.addEventListener('mouseout', function() {
+      tooltip.style.opacity = 0;
+    });
+  });
+});
+
+
+function sairDoJogo() {
+  window.location.href = './sair.html';
+}
 
 
 
@@ -355,12 +525,18 @@ const iniciarJogo = () => {
     } else if (jogoPausado) { // Qualquer outra tecla para despausar
       despausarJogo();
     }
-  });  
-  checaMoveNave = setInterval(moveNave, 50);
+  });
+  vida.textContent = `Vida: 10`;
+  pontos.textContent = `Pontos: 0`;
+  vidaAtual = vidaInicial;
+  pontosAtual = pontosIniciais;
+  
+  checaMoveNave = setInterval(moveNave, 5);
   checaMoveTiros = setInterval(moveTiros, 50);
   checaMoveNaveInimigas = setInterval(moveNaveInimigas, 50);
-  checaColisao = setInterval(colisao, 10);
   checaNaveInimigas = setInterval(naveInimigas, 1000);
+  checaNaveInimigasRapidas = setInterval(naveInimigaRapida, 15000);  // Agora chamando corretamente
+  checaColisao = setInterval(colisao, 10);
   checaTiros = setInterval(atirar, 10);
   botaoIniciar.style.display = "none";
   botaoSobre.style.display = "none";
@@ -368,7 +544,14 @@ const iniciarJogo = () => {
   botaoEscolhaFase.style.display = "none";
   botaoEscolhaNave.style.display = "none";
   botaoDificuldade.style.display = "none";
+  botaoInimigo.style.display = "none";
   cenario.style.animation = "animarCenario 10s infinite linear";
   audioJogo.loop = true;
   audioJogo.play();
+  // Remover o botão "Game Over" se ele existir no DOM
+  const perdeu = document.getElementById("gameOverButton");
+  if (perdeu) {
+    perdeu.remove();
+  }
 }
+

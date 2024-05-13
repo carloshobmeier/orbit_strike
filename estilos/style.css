@@ -19,7 +19,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-image: url(/videos/spac.mp4);
+    background-image: url(/videos/spac1.mp4);
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
@@ -95,6 +95,14 @@
     cursor: pointer;
 }
 
+.btn-menu:hover {
+    background-color: white; /* Muda a cor de fundo para preto no hover */
+    color: black; /* Muda a cor do texto para branco no hover */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho do elemento */
+}
+
+
+
 @keyframes animarCenario {
     from {
         background-position-y: 100%;
@@ -108,17 +116,20 @@
 .naves {
     display: inline-block; /* Exibe os elementos lado a lado */
     margin: 10px 20px; /* Espaço entre as naves */
+    border: solid 1px rgba(255, 255, 255, 0.501);
+    border-radius: 10px;
 }
 
 .naves img {
     width: 200px; /* Largura das imagens das naves */
     height: auto; /* Altura ajustada automaticamente */
+    cursor: pointer; /* Muda o cursor para indicar que o elemento é interativo */
+    transition: filter 0.3s ease; /* Suaviza a transição do filtro */
 }
 
-
-
-
-
+.naves img:hover {
+    filter: brightness(1.2); /* Aumenta o brilho da imagem ao passar o mouse */
+}
 
 
 .modal {
@@ -133,6 +144,10 @@
     background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro semi-transparente */
 }
 
+.modal button {
+    margin-top: 20px;
+}
+
 #escolha_da_nave {
     background-color: rgba(0, 0, 0, 0.864);
     margin: 15% auto; /* Centraliza verticalmente e horizontalmente */
@@ -141,3 +156,87 @@
     width: 50%; /* Largura do conteúdo do modal */
     text-align: center; /* Alinha o texto ao centro */
 }
+
+#ver_inimigos {
+    background-color: rgba(0, 0, 0, 0.864);
+    margin: 5% auto; /* Centraliza verticalmente e horizontalmente */
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%; /* Largura do conteúdo do modal */
+    text-align: center; /* Alinha o texto ao centro */
+}
+
+.naves_inimigas {
+    display: inline-block; /* Exibe os elementos lado a lado */
+    margin: 10px 20px; /* Espaço entre as naves */
+    border: solid 1px rgba(255, 255, 255, 0.501);
+    border-radius: 10px;
+}
+
+.naves_inimigas img {
+    width: 200px; /* Largura das imagens das naves */
+    height: auto; /* Altura ajustada automaticamente */
+    cursor: pointer; /* Muda o cursor para indicar que o elemento é interativo */
+    transition: filter 0.3s ease; /* Suaviza a transição do filtro */
+}
+
+.naves_inimigas img:hover {
+    filter: brightness(1.2); /* Aumenta o brilho da imagem ao passar o mouse */
+}
+
+.fases {
+    display: inline-block; /* Exibe os elementos lado a lado */
+    margin: 10px 20px; /* Espaço entre os elementos */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Suaviza a transição de estilos */
+    cursor: pointer; /* Muda o cursor para indicar que o elemento é interativo */
+}
+
+.fases:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho do elemento */
+}
+
+.fases img {
+    width: 250px; /* Largura das imagens das naves */
+    height: auto; /* Altura ajustada automaticamente */
+    border: solid 2px white;
+}
+
+#escolha_da_fase {
+    background-color: rgba(0, 0, 0, 0.864);
+    margin: 5% auto; /* Centraliza verticalmente e horizontalmente */
+    padding: 20px;
+    border-radius: 10px;
+    width: 59%; /* Largura do conteúdo do modal */
+    text-align: center; /* Alinha o texto ao centro */
+}
+
+
+
+.tooltip-text {
+    position: fixed;
+    padding-top: 20px;
+    padding-bottom: 35px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: black;
+    color: white;
+    border: solid 1px white;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 1000;
+    white-space: nowrap;  /* Mantém o texto em uma única linha */
+    max-width: 800px;     /* Limita a largura do tooltip */
+  }
+  
+  .tooltip-text .title {
+    font-weight: 500;
+    font-size: 0.7em;
+  }
+  
+  .tooltip-text .description {
+    font-size: 0.4em;
+    display: block;  /* Assegura que a descrição apareça em uma nova linha */
+  }
+  

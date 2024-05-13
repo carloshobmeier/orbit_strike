@@ -1,6 +1,5 @@
 
 menu inicial com os nomes dos integrantes da equipe
-
 menu principal (terminar modais)
 
 colocar barras de vida nos inimigos
@@ -9,7 +8,7 @@ colocar ponto de milhar na pontuação
 
 tiro secundário (mina)
 
-jogador escolhe entre 3 opções de nave
+colocar barulho de tiro em lataria para as colisões
 
 power-ups
 	1 - aumenta cadência
@@ -20,8 +19,6 @@ vida
 
 poder especial (ex:laser até o final da tela destruindo tudo instantaneamente, minas)
 
-vários inimigos diferentes (com velocidades diferentes)
-
 no game over relatório com:
 	total de naves destruídas
 	distância percorrida
@@ -30,12 +27,24 @@ no game over relatório com:
 
 colocar scoreboard salvo em txt (mostrar ao gameover)
 
-depois do game over tem que ter um botão para jogar novamente
+
 
 ===========================================================================
 
 FEITO:
 pressionar ESC para pausar
+
+inimigos diferentes (com velocidades diferentes)
+
+jogador escolhe entre 3 opções de nave
+
+depois do game over tem que ter um botão para jogar novamente
+
+
+
+
+
+
 
 
 
