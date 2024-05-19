@@ -1,0 +1,113 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #03002f;
+}
+
+.container {
+    display: inline-flex;
+    width: 90%;
+    height: 90%;
+    border: 2px solid #03002f;
+
+}
+
+h1, p {
+    color: white;
+
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+p {
+    font-size: 1.45em;
+    font-weight: 100;
+}
+
+.text-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column; /* Organiza o conteúdo verticalmente */
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    padding: 10px;
+    text-align: justify;
+    background-color: #ffffff0a;
+    border-radius: 20px;
+    padding: 40px;
+
+}
+
+.text-side:hover {
+    background-color: #ffffff16;
+    border: solid white 1px;
+
+
+}
+.image-side {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #03002f;
+}
+
+.image-side img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    border: 10px solid white;
+}
+
+#button1 {
+    position: absolute;
+    bottom: 12%;
+    right: 5%;
+    padding: 25px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 2em;
+    border: 10px solid white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.506);
+}
+
+#button1:hover {
+    background-color: #c6c6c6;
+
+}
+
+#button2 {
+    position: absolute;
+    top: 7%;
+    left: 2%;
+    padding: 25px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 2em;
+    border: 10px solid white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.506);
+}
+
+#button2:hover {
+    background-color: #c6c6c6;
+}
+
+.text-side, .image-side {
+    flex: 1; /* Usa flex-grow para ocupar o espaço disponível de forma flexível */
+    margin: 0; /* Remove qualquer margem interna */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}

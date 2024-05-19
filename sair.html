@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="/imagens/favicon2.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/imagens/favicon3.png">
+    <script src="/javascripts/botoes.js" defer></script>
+
     <title>Despedida do Jogo</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #03002f;
+            background-color: #00031b;
             text-align: center;
             padding: 30px;
         }
@@ -29,10 +31,12 @@
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             font-weight: 400;
             font-size: 40px;
+            margin-top: 20px;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.506);
         }
 
         .botao:hover {
-            background-color: white; /* Muda a cor de fundo para preto no hover */
+            background-color: #c6c6c6; /* Muda a cor de fundo para preto no hover */
             color: black; /* Muda a cor do texto para branco no hover */
             transform: scale(1.05); /* Aumenta ligeiramente o tamanho do elemento */
         }
@@ -45,8 +49,8 @@
 <body>
     <h1>Obrigado por Jogar!</h1>
     <p>Fizemos o jogo com bastante carinho. Esperamos que você tenha se divertido.</p>
-    <img src="imagens/imagem_abertura.jpg" alt="">
+    <img src="imagens/sair.webp" alt="">
     <br>
-    <button class="botao" onclick="window.location.href='index.html'">Voltar ao Jogo</button>
+    <button class="botao btn-menu" onclick="window.location.href='index.html'">Voltar ao Jogo</button>
 </body>
 </html>

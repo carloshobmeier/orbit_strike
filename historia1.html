@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Page of the Game</title>
+    <link rel="stylesheet" href="estilos/style_index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/imagens/favicon3.png">
+    <script src="/javascripts/botoes.js" defer></script>
+    <style>
+        .story {
+            display: none;
+        }
+        .story.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body onload="startAudio(); showStory('story1');">
+    <div id="story1" class="container story">
+        <div class="text-side">
+            <h1>PRÓLOGO</h1>
+            <p>Em um futuro distante, a Terra alcançou novos patamares de tecnologia e prosperidade, com colônias se estendendo por cantos distantes no universo. </p>
+            <p>No entanto, esta nova era de exploração e expansão atraiu a atenção de uma remota coalizão hostil de civilizações alienígenas conhecidas como a Horda. </p>
+            <p>Com frotas de naves de guerra que se deslocam nas sombras do espaço, a Horda lança ataques furtivos devastadores contra assentamentos humanos, deixando um rastro de destruição.</p>
+        </div>
+        <div class="image-side">
+            <img src="imagens/invisible.jpg" alt="Game Story Image">
+        </div>
+        <button onclick="showStory('story2')" id="button1" class="btn-menu">>></button>
+    </div>
+
+    <div id="story2" class="container story">
+        <div class="text-side">
+            <h1>OPERAÇÃO ORBIT STRIKE</h1>
+            <p>Para combater essa ameaça crescente, a União Terrana formou uma força de elite, com pilotos de combate treinados para operar as mais avançadas naves de guerra já construídas.</p>
+            <p>Essas naves são equipadas com tecnologia de camuflagem que as torna indetectáveis para os radares, permitindo se infiltrar nas linhas inimigas e executar ataques precisos, sem o risco de retaliação.</p>
+            <p>Essa divisão é denominada 'orbit strike'.</p>
+        </div>
+        <div class="image-side">
+            <img src="imagens/invisible2.webp" alt="Game Story Image">
+        </div>
+        <button onclick="showStory('story1')" id="button2" class="btn-menu"><<</button>
+        <button onclick="showStory('story3')" id="button1" class="btn-menu">>></button>
+    </div>
+
+    <div id="story3" class="container story">
+        <div class="text-side">
+            <h1>O SEU PAPEL NESTA GUERRA</h1>
+            <p>Você é o mais novo piloto do esquadrão de ataque, e sua missão é clara: utilizar a vantagem da invisibilidade para interceptar e abater o máximo possível de naves inimigas, minando as forças da Horda antes que os ataques atinjam assentamentos terranos. </p>
+            <p>Com cada vitória do esquadrão, a balança do poder começa a pender a favor dos Terranos. Suas ações não apenas garantem a segurança dos assentamentos, mas também enviam uma mensagem clara através das estrelas: a humanidade não será subjugada facilmente.</p>
+            <p>Lute com honra, comande com bravura, e deixe seu legado entre as estrelas!</p>
+        </div>
+        <div class="image-side">
+            <img src="imagens/vitoria.webp" alt="Game Story Image">
+        </div>
+        <button onclick="showStory('story2')" id="button2" class="btn-menu"><<</button>
+        <button onclick="window.location.href = 'jogo.html';" id="button1" class="btn-menu">>></button>
+    </div>
+
+    <script>
+        function showStory(storyId) {
+            const stories = document.querySelectorAll('.story');
+            stories.forEach(story => {
+                story.style.display = 'none';
+            });
+            const activeStory = document.getElementById(storyId);
+            activeStory.style.display = 'flex';
+        }
+
+        function startAudio() {
+            const audioMenu = new Audio('/audios/MENUpowerful-gym-rock.mp3');
+            audioMenu.loop = true;
+            audioMenu.play();
+        }
+    </script>
+</body>
+</html>

@@ -10,6 +10,9 @@ const nave = document.getElementById("nave");
 const vida = document.getElementById("vida");
 const pontos = document.getElementById("pontos");
 const audioJogo = new Audio("/audios/despair_metal.mp3");
+const audioMenu = new Audio("/audios/MENUpowerful-gym-rock.mp3");
+const audioOver = new Audio("/audios/game_over.mp3");
+const audioSelecionado = new Audio("/audios/selecionado.mp3");
 
 const NaveEscolha = document.getElementById("nave")
 const FaseEscolha = document.getElementById("fundo")
@@ -49,6 +52,43 @@ let posicaoHorizontal = larguraCenario / 2 - 50;
 let posicaoVertical = alturaCenario - alturaCeNave;
 let direcaoHorizontal = 0;
 let direcaoVertical = 0;
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var audio = new Audio('/audios/botao.mp3');
+
+  var buttons = document.querySelectorAll('.btn-menu');
+  buttons.forEach(function(button) {
+      button.addEventListener('mouseover', function() {
+          audio.play();
+      });
+
+      button.addEventListener('mouseout', function() {
+          audio.pause();
+          audio.currentTime = 0;
+      });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  var audio2 = new Audio('/audios/pick-up.mp3');
+
+  var buttons = document.querySelectorAll('.tips');
+  buttons.forEach(function(button) {
+      button.addEventListener('mouseover', function() {
+          audio2.play();
+      });
+
+      button.addEventListener('mouseout', function() {
+          audio2.pause();
+          audio2.currentTime = 0;
+      });
+  });
+});
+
+
+
 
 const teclaPressionada = (tecla) => {
   if (tecla.key === "ArrowRight") {
@@ -129,6 +169,17 @@ const audioTiros = () => {
   cenario.appendChild(audioDoTiro);
   audioDoTiro.addEventListener("ended", () => {
     audioDoTiro.remove();
+  })
+}
+
+const audioColisao = () => {
+  const audioDaColisao = document.createElement("audio");
+  audioDaColisao.className = "audio_colisao";
+  audioDaColisao.setAttribute("src", "/audios/lataria.mp3");
+  audioDaColisao.play();
+  cenario.appendChild(audioDaColisao);
+  audioDaColisao.addEventListener("ended", () => {
+    audioDaColisao.remove();
   })
 }
 
@@ -222,6 +273,7 @@ const colisao = () => {
       ) {
         let vidaAtualNaveInimiga = parseInt(naveInimiga.getAttribute("data-vida"));
         vidaAtualNaveInimiga--;
+        audioColisao();
         tiro.remove();
         if (vidaAtualNaveInimiga === 0) {
           // Captura as posições antes de remover a nave
@@ -368,6 +420,7 @@ const gameOver = () => {
   navesInimigas.forEach(inimigo => inimigo.remove());
   const todosTiros = document.querySelectorAll(".tiro");
   todosTiros.forEach(tiro => cenario.removeChild(tiro));
+  audioOver.play();
 }
 
 
@@ -378,6 +431,13 @@ function abrirModalEscolhaNave() {
 
 function fecharModalEscolhaNave() {
   document.getElementById("modalEscolhaNave").style.display = "none";
+}
+function abrirModalSobre() {
+  document.getElementById("modalSobre").style.display = "block";
+}
+
+function fecharModalSobre() {
+  document.getElementById("modalSobre").style.display = "none";
 }
 
 function abrirModalEscolhaFase() {
@@ -402,14 +462,17 @@ function fecharModalInimigos() {
 
 function selecionarNaveBranca() {
   NaveEscolha.style.backgroundImage = "url('/imagens/nave_branca.png')";
+  audioSelecionado.play();
 }
 
 function selecionarNaveVerde() {
   NaveEscolha.style.backgroundImage = "url('/imagens/nave_verde.png')";
+  audioSelecionado.play();
 }
 
 function selecionarNaveAzul() {
   NaveEscolha.style.backgroundImage = "url('/imagens/nave_azul.png')";
+  audioSelecionado.play();
 }
 
 
@@ -420,63 +483,75 @@ function selecionarFaseSpac1() {
   const videoSource = document.getElementById('fundo'); // Certifique-se de que o ID 'fundo' está no <source> dentro do seu <video>
   videoSource.src = '/videos/spac1.mp4';
   document.getElementById('video-fundo').load(); // Para recarregar o vídeo
+  audioSelecionado.play();
 }
 
 function selecionarFaseSpac2() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac2.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 
 function selecionarFaseSpac3() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac3.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac4() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac4.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac5() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac5.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac6() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac6.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac7() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac7.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac8() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac8.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac9() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac9.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac10() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac10.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac11() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac11.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 function selecionarFaseSpac12() {
   const videoSource = document.getElementById('fundo');
   videoSource.src = '/videos/spac12.mp4';
   document.getElementById('video-fundo').load();
+  audioSelecionado.play();
 }
 
 
@@ -488,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
   tooltip.innerHTML = '<div class="title"></div><div class="description"></div>';
   document.body.appendChild(tooltip);
 
-  const fases = document.querySelectorAll('.fases, .naves, .naves_inimigas');
+  const fases = document.querySelectorAll('.fases, .naves, .naves_inimigas, .desenvolvedores');
   fases.forEach(function(fase) {
     fase.addEventListener('mousemove', function(e) {
       const title = fase.getAttribute('data-title');
@@ -513,6 +588,10 @@ function sairDoJogo() {
   window.location.href = './sair.html';
 }
 
+function startAudio() {
+  audioMenu.loop = true;
+  audioMenu.play();
+}
 
 
 
@@ -546,6 +625,8 @@ const iniciarJogo = () => {
   botaoDificuldade.style.display = "none";
   botaoInimigo.style.display = "none";
   cenario.style.animation = "animarCenario 10s infinite linear";
+  audioMenu.pause(); // Pausa a reprodução do áudio
+  audioMenu.currentTime = 0; // Reinicia o áudio para o iníci
   audioJogo.loop = true;
   audioJogo.play();
   // Remover o botão "Game Over" se ele existir no DOM
