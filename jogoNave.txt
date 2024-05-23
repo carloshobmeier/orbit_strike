@@ -1,14 +1,14 @@
-colocar scoreboard salvo em txt (mostrar ao gameover)
 
-modal comandos
+menu inicial com os nomes dos integrantes da equipe
+menu principal (terminar modais)
 
-chefões
-
-----------------------------------------------------
+colocar barras de vida nos inimigos
 
 colocar ponto de milhar na pontuação
 
 tiro secundário (mina)
+
+colocar barulho de tiro em lataria para as colisões
 
 power-ups
 	1 - aumenta cadência
@@ -25,14 +25,11 @@ no game over relatório com:
 	tiros disparados
 	jogador insere o seu nome (para ter persistência no score)
 
+colocar scoreboard salvo em txt (mostrar ao gameover)
 
-=========================
-- Seria legal, mas poluiu muito o jogo:
 
-colocar barras de vida nos inimigos
 
 ===========================================================================
-
 
 FEITO:
 pressionar ESC para pausar
@@ -43,8 +40,11 @@ jogador escolhe entre 3 opções de nave
 
 depois do game over tem que ter um botão para jogar novamente
 
-menu inicial com os nomes dos integrantes da equipe
 
-colocar barulho de tiro em lataria para as colisões
 
-barulho para escolha da nave/fase (concluído)
+
+
+
+
+
+

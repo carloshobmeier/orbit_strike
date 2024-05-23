@@ -13,10 +13,6 @@
     color: rgb(255, 200, 0);
 }
 
-#vida, #pontos {
-    text-shadow: 2px 2px 2px black;
-}
-
 #cenario {
     position: relative;
     width: 100vw;
@@ -215,32 +211,6 @@
     text-align: center; /* Alinha o texto ao centro */
 }
 
-#sobre_mod {
-    background-color: rgba(0, 0, 0, 0.864);
-    margin: 5% auto; /* Centraliza verticalmente e horizontalmente */
-    padding: 20px;
-    border-radius: 10px;
-    width: 59%; /* Largura do conteúdo do modal */
-    text-align: center; /* Alinha o texto ao centro */
-}
-
-.desenvolvedores {
-    display: inline-block; /* Exibe os elementos lado a lado */
-
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Suaviza a transição de estilos */
-    cursor: pointer; /* Muda o cursor para indicar que o elemento é interativo */
-}
-
-.desenvolvedores:hover {
-    transform: scale(1.1); /* Aumenta ligeiramente o tamanho do elemento */
-}
-
-.desenvolvedores img {
-    height: 300px; /* Largura das imagens das naves */
-    width: auto; /* Altura ajustada automaticamente */
-    border: solid 2px white;
-}
-
 
 
 .tooltip-text {
@@ -264,11 +234,10 @@
   .tooltip-text .title {
     font-weight: 500;
     font-size: 0.7em;
-}
-
-.tooltip-text .description {
+  }
+  
+  .tooltip-text .description {
     font-size: 0.4em;
-    font-weight: 100;
     display: block;  /* Assegura que a descrição apareça em uma nova linha */
   }
   
