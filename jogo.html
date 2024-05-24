@@ -23,11 +23,11 @@
       <div id="nave"></div>
       <div id="telaInicial">
         <button type="button" id="iniciar" class="btn-menu" onclick="iniciarJogo()">Iniciar Jogo</button>
-        <button type="button" id="dificuldade" class="btn-menu" onclick="">Dificuldade</button>
+        <button type="button" id="dificuldade" class="btn-menu" onclick="">Comandos</button>
         <button type="button" id="escolhaNave" class="btn-menu" onclick="abrirModalEscolhaNave()">Escolher Nave</button>
         <button type="button" id="escolhaFase" class="btn-menu" onclick="abrirModalEscolhaFase()">Escolher Fase</button>
         <button type="button" id="inimigos" class="btn-menu" onclick="abrirModalInimigos()">Inimigos</button>
-        <button type="button" id="sobre" class="btn-menu" onclick="">Sobre</button>
+        <button type="button" id="sobre" class="btn-menu" onclick="abrirModalSobre()">Sobre</button>
         <button type="button" id="sair" class="btn-menu" onclick="sairDoJogo()">Sair</button>
         <button id="botaoPausa">Pausado</button>
       </div>
@@ -35,13 +35,13 @@
 
     <div id="modalEscolhaNave" class="modal">
       <div id="escolha_da_nave">
-          <div class="naves" onclick="selecionarNaveBranca()" data-title="Arctic Phantom" data-description="Nave altamente tecnológica, capturada do inimigo.">
+          <div class="naves tips" onclick="selecionarNaveBranca()" data-title="Arctic Phantom" data-description="Nave altamente tecnológica, capturada do inimigo.">
               <img src="imagens/nave_branca.png" alt="Nave Branca">
           </div>
-          <div class="naves" onclick="selecionarNaveVerde()" data-title="Verdant Viper" data-description="Nossa nave militar mais moderna.">
+          <div class="naves tips" onclick="selecionarNaveVerde()" data-title="Verdant Viper" data-description="Nossa nave militar mais moderna.">
               <img src="imagens/nave_verde.png" alt="Nave Verde">
           </div>
-          <div class="naves" onclick="selecionarNaveAzul()" data-title="Cerulean Guardian" data-description="Nossa nave militar da geração passada.">
+          <div class="naves tips" onclick="selecionarNaveAzul()" data-title="Cerulean Guardian" data-description="Nossa nave militar da geração passada.">
               <img src="imagens/nave_azul.png" alt="Nave Azul">
           </div>
           <br>
@@ -49,33 +49,49 @@
       </div>
     </div>
 
+    <div id="modalSobre" class="modal">
+      <div id="sobre_mod">
+          <div>
+            <h1>DESENVOLVEDORES</h1> <br>
+          </div>
+          <div class="desenvolvedores tips" data-title="Amanda Queiroz" data-description="https://www.linkedin.com/in/amandaqsobral/">
+              <img src="imagens/Amanda.jpg" alt="dev">
+          </div>
+          <div class="desenvolvedores tips" data-title="Carlos Hobmeier" data-description="https://www.linkedin.com/in/carlos-hobmeier/">
+              <img src="imagens/Carlos.jpg" alt="dev">
+          </div>
+          <br>
+          <button type="button" id="sair" class="btn-menu" onclick="fecharModalSobre()">Voltar</button>
+      </div>
+    </div>
+
     <div id="modalEscolhaFase" class="modal">
       <div id="escolha_da_fase">
-        <div class="fases" onclick="selecionarFaseSpac1()" data-title="Pulsare de Luminara" data-description="Intercepte o inimigo entre os brilhos rosados de Luminara.">
+        <div class="fases tips" onclick="selecionarFaseSpac1()" data-title="Pulsare de Luminara" data-description="Intercepte o inimigo entre os brilhos rosados de Luminara.">
           <img src="videos/spac1.png" alt="fase_espaco">
         </div>        
-          <div class="fases" onclick="selecionarFaseSpac2()" data-title="Deep Space" data-description="Intercepte o inimigo no espaço profundo, longe de qualquer sistema.">
+          <div class="fases tips" onclick="selecionarFaseSpac2()" data-title="Deep Space" data-description="Intercepte o inimigo no espaço profundo, longe de qualquer sistema.">
             <img src="videos/spac2.png" alt="fase_espaco">
           </div>
-          <div class="fases" onclick="selecionarFaseSpac3()" data-title="Cinturão de Asteróides de Sirona" data-description="Intercepte o inimigo entre nuvens de asteroides próximo ao sistema de Sirona.">
+          <div class="fases tips" onclick="selecionarFaseSpac3()" data-title="Cinturão de Asteróides de Sirona" data-description="Intercepte o inimigo entre nuvens de asteroides próximo ao sistema de Sirona.">
             <img src="videos/spac3.png" alt="fase_espaco" >
           </div>
-          <div class="fases" onclick="selecionarFaseSpac4()" data-title="Matéria Escura de Riftway" data-description="Intercepte o inimigo nos gases e poeiras de riftway.">
+          <div class="fases tips" onclick="selecionarFaseSpac4()" data-title="Matéria Escura de Riftway" data-description="Intercepte o inimigo nos gases e poeiras de riftway.">
             <img src="videos/spac4.png" alt="fase_espaco">
           </div>
-          <div class="fases" onclick="selecionarFaseSpac5()" data-title="Quasar de Polarix" data-description="Intercepte o inimigo próximo ao centro de energia de Polarix.">
+          <div class="fases tips" onclick="selecionarFaseSpac5()" data-title="Quasar de Polarix" data-description="Intercepte o inimigo próximo ao centro de energia de Polarix.">
             <img src="videos/spac5.png" alt="fase_espaco">
           </div>
-          <div class="fases" onclick="selecionarFaseSpac6()" data-title="Nebulosa de Homefront" data-description="Intercepte o inimigo no ponto mais próximo ao assentamento terrano.">
+          <div class="fases tips" onclick="selecionarFaseSpac6()" data-title="Nebulosa de Homefront" data-description="Intercepte o inimigo no ponto mais próximo ao assentamento terrano.">
             <img src="videos/spac6.png" alt="fase_espaco">
           </div>
-          <div class="fases" onclick="selecionarFaseSpac7()" data-title="Galaxia de Vespera" data-description="Intercepte o inimigo nas bordas da sua galáxia de origem.">
+          <div class="fases tips" onclick="selecionarFaseSpac7()" data-title="Galaxia de Vespera" data-description="Intercepte o inimigo nas bordas da sua galáxia de origem.">
             <img src="videos/spac7.png" alt="fase_espaco">
           </div>
-          <div class="fases" onclick="selecionarFaseSpac8()" data-title="Supernova de Vergona" data-description="Intercepte o inimigo nos feixes radioativos de Vergona.">
+          <div class="fases tips" onclick="selecionarFaseSpac8()" data-title="Supernova de Vergona" data-description="Intercepte o inimigo nos feixes radioativos de Vergona.">
             <img src="videos/spac8.png" alt="fase_espaco">
           </div>
-          <div class="fases" onclick="selecionarFaseSpac9()" data-title="Nave-mãe" data-description="Enfrente o inimigo diretamente dentro da sua nave planetária.">
+          <div class="fases tips" onclick="selecionarFaseSpac9()" data-title="Nave-mãe" data-description="Enfrente o inimigo diretamente dentro da sua nave planetária.">
             <img src="videos/spac9.png" alt="fase_espaco">
           </div>
           <br>
@@ -86,22 +102,22 @@
 
     <div id="modalInimigos" class="modal">
       <div id="ver_inimigos">
-        <div class="naves_inimigas" data-title="Black Marauder - [10 pontos; 1 vida]" data-description="A principal força de ataque do inimigo. Domina os céus com o seu poder de fogo implacável.">
+        <div class="naves_inimigas tips" data-title="Black Marauder - [10 pontos; 1 vida]" data-description="A principal força de ataque do inimigo. Domina os céus com o seu poder de fogo implacável.">
           <img src="/imagens/nave_preta_mini.png" alt="nave_inimiga">
         </div>        
-          <div class="naves_inimigas" data-title="Yellow Sprinter - [100 pontos; 0 vidas]" data-description="Nave ultra-rápida projetada para levar suprimentos para o exército inimigo.">
+          <div class="naves_inimigas tips" data-title="Yellow Sprinter - [100 pontos; 0 vidas]" data-description="Nave ultra-rápida projetada para levar suprimentos para o exército inimigo.">
             <img src="/imagens/nave_amarela_mini.png" alt="nave_inimiga">
           </div>
-          <div class="naves_inimigas" data-title="Power Pod" data-description="Este satélite armazena vários poderes do inimigo, que poderão ser utilizados contra ele.">
+          <div class="naves_inimigas tips" data-title="Power Pod" data-description="Este satélite armazena vários poderes do inimigo, que poderão ser utilizados contra ele.">
             <img src="/imagens/pod_poder_mini.png" alt="nave_inimiga" >
           </div>
-          <div class="naves_inimigas" data-title="Life Beacon" data-description="Diretamente ligada aos escudos do inimigo, destruir uma delas é o mesmo que anular um inimigo.">
+          <div class="naves_inimigas tips" data-title="Life Beacon" data-description="Diretamente ligada aos escudos do inimigo, destruir uma delas é o mesmo que anular um inimigo.">
             <img src="/imagens/pod_vida_mini.png" alt="nave_inimiga">
           </div>
-          <div class="naves_inimigas" data-title="Scarlet Overlord - [250 pontos; 2 vidas]" data-description="Fortaleza voadora, com um arsenal esmagador.">
+          <div class="naves_inimigas tips" data-title="Scarlet Overlord - [250 pontos; 2 vidas]" data-description="Fortaleza voadora, com um arsenal esmagador.">
             <img src="/imagens/chefao_vermelho.png" alt="nave_inimiga">
           </div>
-          <div class="naves_inimigas" data-title="Frost Titan - [500 pontos; 3 vidas]" data-description="Uma figura massiva e imponente, com uma blindagem muito grossa.">
+          <div class="naves_inimigas tips" data-title="Frost Titan - [500 pontos; 3 vidas]" data-description="Uma figura massiva e imponente, com uma blindagem muito grossa.">
             <img src="/imagens/chefao_branco.png" alt="nave_inimiga">
           </div>
           <br>
