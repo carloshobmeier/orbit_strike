@@ -26,8 +26,10 @@ const alturaCeNave = nave.offsetHeight;
 
 const velocidadeNave = 2;
 const velocidadeTiro = 25;
-const velocidadeNaveInimigas = 3.5;
-const velocidadeNaveInimigasRapida = 6;
+const velocidadeNaveInimigas = 2.5;
+const velocidadeChefe1 = 1;
+const velocidadeChefe2 = 0.5;
+const velocidadeNaveInimigasRapida = 4;
 
 let estaAtirando = false;
 let jogoPausado = false;
@@ -43,6 +45,7 @@ let pontosAtual = pontosIniciais;
 let checaMoveNaveInimigas;
 let checaNaveInimigas;
 let checaNaveInimigasRapidas;
+let checaChefe;
 let checaMoveTiros;
 let checaMoveNave;
 let checaColisao;
@@ -197,6 +200,23 @@ const moveTiros = () => {
   }
 }
 
+const Chefe = () => {
+  const chefe = document.createElement("div");
+  chefe.className = "chefe";
+  chefe.style.position = "absolute";
+  chefe.setAttribute("data-vida", 25);
+  chefe.style.width = "200px";
+  chefe.style.height = "200px";
+  chefe.style.backgroundImage = "url(/imagens/chefao_vermelho.png)";
+  chefe.style.backgroundPosition = "center";
+  chefe.style.backgroundRepeat = "no-repeat";
+  chefe.style.backgroundSize = "contain";
+  chefe.style.top = "-200px";
+  chefe.style.left = Math.floor(Math.random() * (larguraCenario - 200)) + "px";
+  cenario.appendChild(chefe);
+}
+
+
 const naveInimigas = () => {
   const inimigo = document.createElement("div");
   inimigo.className = "inimigo";
@@ -233,34 +253,43 @@ const naveInimigaRapida = () => {
 
 
 const moveNaveInimigas = () => {
-  const navaInimigas = document.querySelectorAll(".inimigo");
+  const navaInimigas = document.querySelectorAll(".inimigo, .chefe");
   for (let i = 0; i < navaInimigas.length; i++) {
-    if (navaInimigas[i]) {
-      let posicaoTopNaveInimiga = navaInimigas[i].offsetTop;
-      // Define a velocidade com base na classe da nave
-      let velocidadeAtual = navaInimigas[i].classList.contains('rapida') ? velocidadeNaveInimigasRapida : velocidadeNaveInimigas;
-      posicaoTopNaveInimiga += velocidadeAtual;
-      navaInimigas[i].style.top = posicaoTopNaveInimiga + "px";
+    let nave = navaInimigas[i];
+    let posicaoTopNaveInimiga = nave.offsetTop;
 
-      if (posicaoTopNaveInimiga > alturaCenario) {
-        // Se a nave inimiga passar pela tela, verificar se é do tipo rápido
-        if (!navaInimigas[i].classList.contains('rapida')) {
-          vidaAtual -= 1;  // Reduz a vida somente se não for uma nave rápida
-          vida.textContent = `Vida: ${vidaAtual}`;
-        }
-        explosaoNaveInimigaDestruida(navaInimigas[i].offsetLeft);
-        if (vidaAtual <= 0) {
-          gameOver();
-        }
-        navaInimigas[i].remove();
-      } 
+    // Define a velocidade com base na classe da nave
+    let velocidadeAtual = nave.classList.contains('rapida') ? velocidadeNaveInimigasRapida : 
+                          nave.classList.contains('chefe') ? velocidadeChefe1 : velocidadeNaveInimigas;
+
+    posicaoTopNaveInimiga += velocidadeAtual;
+    nave.style.top = posicaoTopNaveInimiga + "px";
+
+    if (posicaoTopNaveInimiga > alturaCenario) {
+      if (!nave.classList.contains('rapida')) {
+        // Reduz a vida apenas para naves normais e chefes
+        vidaAtual -= nave.classList.contains('chefe') ? 3 : 1;
+        vida.textContent = `Vida: ${vidaAtual}`;
+      }
+
+      // Chama as funções de efeito visual e sonoro para todas as naves
+      explosaoNaveInimigaDestruida(nave.offsetLeft);
+      audioPassou();
+
+      nave.remove();  // Remove a nave do DOM
+
+      if (vidaAtual <= 0) {
+        gameOver();
+      }
     }
   }
 }
 
+
 const colisao = () => {
-  const todasNavesInimigas = document.querySelectorAll(".inimigo");
+  const todasNavesInimigas = document.querySelectorAll(".inimigo, .chefe");
   const todosTiros = document.querySelectorAll(".tiro");
+
   todasNavesInimigas.forEach((naveInimiga) => {
     todosTiros.forEach((tiro) => {
       const colisaoNaveInimiga = naveInimiga.getBoundingClientRect();
@@ -275,15 +304,20 @@ const colisao = () => {
         vidaAtualNaveInimiga--;
         audioColisao();
         tiro.remove();
-        if (vidaAtualNaveInimiga === 0) {
+
+        if (vidaAtualNaveInimiga <= 0) {
           // Captura as posições antes de remover a nave
           const posicaoLeftNaveInimiga = naveInimiga.offsetLeft;
           const posicaoTopNaveInimiga = naveInimiga.offsetTop;
-          const pontosPorNave = naveInimiga.classList.contains('rapida') ? 100 : 10;
+          // Ajusta a pontuação com base no tipo da nave
+          const pontosPorNave = naveInimiga.classList.contains('chefe') ? 500 :
+                                naveInimiga.classList.contains('rapida') ? 100 : 10;
           pontosAtual += pontosPorNave;
           pontos.textContent = `Pontos: ${pontosAtual}`;
+
+          const isChefe = naveInimiga.classList.contains('chefe');
+          naveInimigaDestruida(posicaoLeftNaveInimiga, posicaoTopNaveInimiga, isChefe);
           naveInimiga.remove();  // Remove a nave inimiga do DOM
-          naveInimigaDestruida(posicaoLeftNaveInimiga, posicaoTopNaveInimiga);  // Chama a função de destruição passando as posições
         } else {
           naveInimiga.setAttribute("data-vida", vidaAtualNaveInimiga);
         }
@@ -293,12 +327,13 @@ const colisao = () => {
 }
 
 
-const naveInimigaDestruida = (posicaoLeftNaveInimiga, posicaoTopNaveInimiga) => {
+
+const naveInimigaDestruida = (posicaoLeftNaveInimiga, posicaoTopNaveInimiga, isChefe) => {
   const naveInimigaDestruida = document.createElement("div");
   naveInimigaDestruida.className = "naveinimigadestruida";
   naveInimigaDestruida.style.position = "absolute";
-  naveInimigaDestruida.style.width = "100px";
-  naveInimigaDestruida.style.height = "100px";
+  naveInimigaDestruida.style.width = isChefe ? "200px" : "100px"; // Dobro do tamanho para chefes
+  naveInimigaDestruida.style.height = isChefe ? "200px" : "100px"; // Dobro do tamanho para chefes
   naveInimigaDestruida.style.backgroundImage = "url(/imagens/eliminado.gif)";
   naveInimigaDestruida.style.backgroundPosition = "center";
   naveInimigaDestruida.style.backgroundRepeat = "no-repeat";
@@ -306,8 +341,12 @@ const naveInimigaDestruida = (posicaoLeftNaveInimiga, posicaoTopNaveInimiga) => 
   naveInimigaDestruida.style.left = posicaoLeftNaveInimiga + "px";
   naveInimigaDestruida.style.top = posicaoTopNaveInimiga + "px";
   cenario.appendChild(naveInimigaDestruida);
-  audioExplosoes();
-  setTimeout(() => {cenario.removeChild(naveInimigaDestruida);}, 1000);
+
+  // Tocar áudio específico para chefes
+  const audioFile = isChefe ? "/audios/destruido_chefao.mp3" : "/audios/destruido.mp3";
+  audioExplosoes(audioFile);
+
+  setTimeout(() => { cenario.removeChild(naveInimigaDestruida); }, 1000);
 }
 
 const explosaoNaveInimigaDestruida = (posicaoLeftNaveInimiga) => {
@@ -327,16 +366,16 @@ const explosaoNaveInimigaDestruida = (posicaoLeftNaveInimiga) => {
   setTimeout(() => {cenario.removeChild(explosaoNaveInimiga);}, 1000);
 }
 
-const audioExplosoes = () => {
-  const audioExplosaoNaveInimiga = document.createElement("audio");
-  audioExplosaoNaveInimiga.className = "audioexplosoes";
-  audioExplosaoNaveInimiga.setAttribute("src", "/audios/destruido.mp3");
+const audioExplosoes = (audioSrc) => {
+  const audioExplosaoNaveInimiga = new Audio(audioSrc);
   audioExplosaoNaveInimiga.play();
   cenario.appendChild(audioExplosaoNaveInimiga);
   audioExplosaoNaveInimiga.addEventListener("ended", () => {
     audioExplosaoNaveInimiga.remove();
-  })
+  });
 }
+
+
 const audioPassou = () => {
   const audioPassouNaveInimiga = document.createElement("audio");
   audioPassouNaveInimiga.className = "audioexplosoes";
@@ -387,6 +426,7 @@ const gameOver = () => {
   document.removeEventListener("keyup", teclaSolta);
   clearInterval(checaMoveNaveInimigas);
   clearInterval(checaNaveInimigas);
+  clearInterval(checaChefe);
   clearInterval(checaNaveInimigasRapidas);
   clearInterval(checaMoveTiros);
   clearInterval(checaMoveNave);
@@ -416,7 +456,7 @@ const gameOver = () => {
   buttonsContainer.appendChild(botaoIniciar);
 
   cenario.style.animation = "none";
-  const navesInimigas = document.querySelectorAll(".inimigo");
+  const navesInimigas = document.querySelectorAll(".inimigo, .chefe");
   navesInimigas.forEach(inimigo => inimigo.remove());
   const todosTiros = document.querySelectorAll(".tiro");
   todosTiros.forEach(tiro => cenario.removeChild(tiro));
@@ -612,6 +652,7 @@ const iniciarJogo = () => {
   
   checaMoveNave = setInterval(moveNave, 5);
   checaMoveTiros = setInterval(moveTiros, 50);
+  checaChefe = setInterval(Chefe, 30000)
   checaMoveNaveInimigas = setInterval(moveNaveInimigas, 50);
   checaNaveInimigas = setInterval(naveInimigas, 1000);
   checaNaveInimigasRapidas = setInterval(naveInimigaRapida, 15000);  // Agora chamando corretamente
