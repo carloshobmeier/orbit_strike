@@ -57,6 +57,10 @@ let direcaoHorizontal = 0;
 let direcaoVertical = 0;
 
 
+const atualizarPontos = (pontos) => {
+  pontos.textContent = `Pontos: ${pontosAtual.toLocaleString()}`;
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   var audio = new Audio('/audios/botao.mp3');
@@ -207,7 +211,13 @@ const Chefe = () => {
   chefe.setAttribute("data-vida", 25);
   chefe.style.width = "200px";
   chefe.style.height = "200px";
-  chefe.style.backgroundImage = "url(/imagens/chefao_vermelho.png)";
+
+  // Caminhos das imagens para o chefão
+  const imagensChefao = ["/imagens/chefao_vermelho.png", "/imagens/chefao_branco.png"];
+  // Escolha aleatória entre as duas imagens
+  const imagemEscolhida = imagensChefao[Math.floor(Math.random() * imagensChefao.length)];
+
+  chefe.style.backgroundImage = `url(${imagemEscolhida})`;
   chefe.style.backgroundPosition = "center";
   chefe.style.backgroundRepeat = "no-repeat";
   chefe.style.backgroundSize = "contain";
@@ -306,14 +316,13 @@ const colisao = () => {
         tiro.remove();
 
         if (vidaAtualNaveInimiga <= 0) {
-          // Captura as posições antes de remover a nave
           const posicaoLeftNaveInimiga = naveInimiga.offsetLeft;
           const posicaoTopNaveInimiga = naveInimiga.offsetTop;
-          // Ajusta a pontuação com base no tipo da nave
           const pontosPorNave = naveInimiga.classList.contains('chefe') ? 500 :
                                 naveInimiga.classList.contains('rapida') ? 100 : 10;
           pontosAtual += pontosPorNave;
-          pontos.textContent = `Pontos: ${pontosAtual}`;
+          atualizarPontos(pontos);
+
 
           const isChefe = naveInimiga.classList.contains('chefe');
           naveInimigaDestruida(posicaoLeftNaveInimiga, posicaoTopNaveInimiga, isChefe);

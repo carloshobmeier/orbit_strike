@@ -2,8 +2,6 @@ colocar scoreboard salvo em txt (mostrar ao gameover)
 
 modal comandos
 
-chefões
-
 ----------------------------------------------------
 
 colocar ponto de milhar na pontuação
@@ -36,6 +34,8 @@ colocar barras de vida nos inimigos
 
 FEITO:
 pressionar ESC para pausar
+
+chefões
 
 inimigos diferentes (com velocidades diferentes)
 
