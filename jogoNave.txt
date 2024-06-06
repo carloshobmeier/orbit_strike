@@ -4,7 +4,7 @@ modal comandos
 
 ----------------------------------------------------
 
-colocar ponto de milhar na pontuação
+
 
 tiro secundário (mina)
 
@@ -13,7 +13,6 @@ power-ups
 	2 - aumenta o tipo de tiro (dura por x tempo)
 	3 - aumenta a velocidade da nave (dura por x tempo)
 
-vida
 
 poder especial (ex:laser até o final da tela destruindo tudo instantaneamente, minas)
 
@@ -33,6 +32,9 @@ colocar barras de vida nos inimigos
 
 
 FEITO:
+
+vida
+
 pressionar ESC para pausar
 
 chefões
@@ -48,3 +50,6 @@ menu inicial com os nomes dos integrantes da equipe
 colocar barulho de tiro em lataria para as colisões
 
 barulho para escolha da nave/fase (concluído)
+
+colocar ponto de milhar na pontuação
+

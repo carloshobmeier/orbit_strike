@@ -23,7 +23,7 @@
       <div id="nave"></div>
       <div id="telaInicial">
         <button type="button" id="iniciar" class="btn-menu" onclick="iniciarJogo()">Iniciar Jogo</button>
-        <button type="button" id="dificuldade" class="btn-menu" onclick="">Comandos</button>
+        <button type="button" id="dificuldade" class="btn-menu" onclick="abrirModalComandos()">Comandos</button>
         <button type="button" id="escolhaNave" class="btn-menu" onclick="abrirModalEscolhaNave()">Escolher Nave</button>
         <button type="button" id="escolhaFase" class="btn-menu" onclick="abrirModalEscolhaFase()">Escolher Fase</button>
         <button type="button" id="inimigos" class="btn-menu" onclick="abrirModalInimigos()">Inimigos</button>
@@ -62,6 +62,19 @@
           </div>
           <br>
           <button type="button" id="sair" class="btn-menu" onclick="fecharModalSobre()">Voltar</button>
+      </div>
+    </div>
+
+    <div id="modalComandos" class="modal">
+      <div id="comandos_mod">
+          <div>
+            <h1>COMANDOS</h1> <br>
+          </div>
+          <div class="teclado-container">
+            <img src="teclado.png" alt="Teclado" id="teclado">
+          </div>
+          <br>
+          <button type="button" id="sair" class="btn-menu" onclick="fecharModalComandos()">Voltar</button>
       </div>
     </div>
 
@@ -114,7 +127,7 @@
           <div class="naves_inimigas tips" data-title="Life Beacon" data-description="Diretamente ligada aos escudos do inimigo, destruir uma delas é o mesmo que anular um inimigo.">
             <img src="/imagens/pod_vida_mini.png" alt="nave_inimiga">
           </div>
-          <div class="naves_inimigas tips" data-title="Scarlet Overlord - [250 pontos; 2 vidas]" data-description="Fortaleza voadora, com um arsenal esmagador.">
+          <div class="naves_inimigas tips" data-title="Scarlet Overlord - [500 pontos; 3 vidas]" data-description="Fortaleza voadora, com um arsenal esmagador.">
             <img src="/imagens/chefao_vermelho.png" alt="nave_inimiga">
           </div>
           <div class="naves_inimigas tips" data-title="Frost Titan - [500 pontos; 3 vidas]" data-description="Uma figura massiva e imponente, com uma blindagem muito grossa.">

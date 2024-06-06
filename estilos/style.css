@@ -215,6 +215,15 @@
     text-align: center; /* Alinha o texto ao centro */
 }
 
+#comandos_mod {
+    background-color: rgba(0, 0, 0, 0.864);
+    margin: 5% auto; /* Centraliza verticalmente e horizontalmente */
+    padding: 20px;
+    border-radius: 10px;
+    width: 70%; /* Largura do conteúdo do modal */
+    text-align: center; /* Alinha o texto ao centro */
+}
+
 #sobre_mod {
     background-color: rgba(0, 0, 0, 0.864);
     margin: 5% auto; /* Centraliza verticalmente e horizontalmente */
