@@ -281,3 +281,14 @@
     display: block;  /* Assegura que a descrição apareça em uma nova linha */
   }
   
+
+
+#observacao {
+    font-size: 0.5em;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+#poder:hover {
+    src: "./imagens/mina.png"
+}

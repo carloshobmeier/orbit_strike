@@ -1,9 +1,5 @@
+
 colocar scoreboard salvo em txt (mostrar ao gameover)
-
-modal comandos
-
-----------------------------------------------------
-
 
 
 tiro secundário (mina)
@@ -23,15 +19,19 @@ no game over relatório com:
 	jogador insere o seu nome (para ter persistência no score)
 
 
-=========================
-- Seria legal, mas poluiu muito o jogo:
 
+
+- Seria legal, mas poluiu muito o jogo:
 colocar barras de vida nos inimigos
+
 
 ===========================================================================
 
 
+
 FEITO:
+
+modal comandos
 
 vida
 

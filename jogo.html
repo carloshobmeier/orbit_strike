@@ -68,10 +68,11 @@
     <div id="modalComandos" class="modal">
       <div id="comandos_mod">
           <div>
-            <h1>COMANDOS</h1> <br>
+            <h1>COMANDOS</h1>
+            <h6 id="observacao">(passe o mouse sobre o teclado para visualizar os comandos)</h6>
           </div>
           <div class="teclado-container">
-            <img src="teclado.png" alt="Teclado" id="teclado">
+            <img src="./imagens/teclado.png" alt="Teclado" id="teclado">
           </div>
           <br>
           <button type="button" id="sair" class="btn-menu" onclick="fecharModalComandos()">Voltar</button>
@@ -122,8 +123,8 @@
             <img src="/imagens/nave_amarela_mini.png" alt="nave_inimiga">
           </div>
           <div class="naves_inimigas tips" data-title="Power Pod" data-description="Este satélite armazena vários poderes do inimigo, que poderão ser utilizados contra ele.">
-            <img src="/imagens/pod_poder_mini.png" alt="nave_inimiga" >
-          </div>
+            <img id="poder" src="/imagens/pod_poder_mini.png" alt="nave_inimiga" onmouseover="changeImage()" onmouseout="revertImage()">
+        </div>
           <div class="naves_inimigas tips" data-title="Life Beacon" data-description="Diretamente ligada aos escudos do inimigo, destruir uma delas é o mesmo que anular um inimigo.">
             <img src="/imagens/pod_vida_mini.png" alt="nave_inimiga">
           </div>
@@ -141,6 +142,17 @@
 
 
     <script src="/javascripts/script.js" defer></script>
+    <script src="/javascripts/botoes.js" defer></script>
+    <script src="/javascripts/gameover.js" defer></script>
+    <script src="/javascripts/iniciar.js" defer></script>
+    <script src="/javascripts/inimigos.js" defer></script>
+    <script src="/javascripts/jogador.js" defer></script>
+    <script src="/javascripts/modais.js" defer></script>
+    <script src="/javascripts/pause.js" defer></script>
+    <script src="/javascripts/pod_vida.js" defer></script>
+    <script src="/javascripts/selecao_fase.js" defer></script>
+    <script src="/javascripts/selecao_nave.js" defer></script>
+    <script src="/javascripts/tooltips.js" defer></script>
   </body>
   
 </html>
