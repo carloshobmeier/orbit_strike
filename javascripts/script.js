@@ -9,10 +9,10 @@ const cenario = document.getElementById("cenario");
 const nave = document.getElementById("nave");
 const vida = document.getElementById("vida");
 const pontos = document.getElementById("pontos");
-const audioJogo = new Audio("/audios/despair_metal.mp3");
-const audioMenu = new Audio("/audios/MENUpowerful-gym-rock.mp3");
-const audioOver = new Audio("/audios/game_over.mp3");
-const audioSelecionado = new Audio("/audios/selecionado.mp3");
+const audioJogo = new Audio("../audios/despair_metal.mp3");
+const audioMenu = new Audio("../audios/MENUpowerful-gym-rock.mp3");
+const audioOver = new Audio("../audios/game_over.mp3");
+const audioSelecionado = new Audio("../audios/selecionado.mp3");
 
 const NaveEscolha = document.getElementById("nave")
 const FaseEscolha = document.getElementById("fundo")
@@ -67,7 +67,7 @@ const atualizarPontos = (pontos) => {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  var audio = new Audio('/audios/botao.mp3');
+  var audio = new Audio('../audios/botao.mp3');
 
   var buttons = document.querySelectorAll('.btn-menu');
   buttons.forEach(function(button) {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  var audio2 = new Audio('/audios/pick-up.mp3');
+  var audio2 = new Audio('../audios/pick-up.mp3');
 
   var buttons = document.querySelectorAll('.tips');
   buttons.forEach(function(button) {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function sairDoJogo() {
-  window.location.href = './sair.html';
+  window.location.href = '../sair.html';
 }
 
 function startAudio() {
@@ -112,15 +112,15 @@ function startAudio() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var tecladoImg = document.getElementById('teclado');
-  var audio3 = new Audio('/audios/pick-up.mp3');
+  var audio3 = new Audio('../audios/pick-up.mp3');
 
   tecladoImg.addEventListener('mouseover', function() {
-      this.src = './imagens/teclado_marcado.png';
+      this.src = '../imagens/teclado_marcado.png';
       audio3.play();
       });
       
       tecladoImg.addEventListener('mouseout', function() {
-        this.src = './imagens/teclado.png';
+        this.src = '../imagens/teclado.png';
         audio3.play();
 
   });
@@ -128,11 +128,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function changeImage() {
-  document.getElementById('poder').src = '/imagens/pod_poder_mini_breve.png';
+  document.getElementById('poder').src = '../imagens/pod_poder_mini_breve.png';
 }
 
 function revertImage() {
-  document.getElementById('poder').src = '/imagens/pod_poder_mini.png';
+  document.getElementById('poder').src = '../imagens/pod_poder_mini.png';
 }
 
 

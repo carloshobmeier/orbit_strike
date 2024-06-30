@@ -23,7 +23,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-image: url(/videos/spac1.mp4);
+    background-image: url(../videos/spac1.mp4);
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
@@ -56,7 +56,7 @@
     position: absolute;
     width: 100px;
     height: 100px;
-    background-image: url(/imagens/nave_branca.png);
+    background-image: url(../imagens/nave_branca.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

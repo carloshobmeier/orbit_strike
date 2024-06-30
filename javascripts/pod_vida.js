@@ -5,7 +5,7 @@ const criarNaveVida = () => {
     naveVida.style.position = 'absolute';
     naveVida.style.width = '100px';
     naveVida.style.height = '100px';
-    naveVida.style.backgroundImage = "url('/imagens/pod_vida.png')";
+    naveVida.style.backgroundImage = "url('../imagens/pod_vida.png')";
     naveVida.style.backgroundSize = 'cover';
     naveVida.style.left = '0px';
     naveVida.style.top = '20px';
@@ -74,7 +74,7 @@ explosao.className = 'explosao';
 explosao.style.position = 'absolute';
 explosao.style.width = `${larguraExplosao}px`;
 explosao.style.height = `${alturaExplosao}px`;
-explosao.style.backgroundImage = "url('/imagens/eliminado.gif')";
+explosao.style.backgroundImage = "url('../imagens/eliminado.gif')";
 explosao.style.backgroundSize = 'cover';  // Garante que o background cubra todo o elemento
 explosao.style.left = `${posicaoHorizontal + (larguraNaveVida - larguraExplosao) / 2}px`;
 explosao.style.top = `${posicaoTop + (alturaNaveVida - alturaExplosao) / 2}px`;
@@ -85,7 +85,7 @@ setTimeout(() => {
 }, 1000);  // Asumindo que a duração da animação é 1000ms
 
 naveVida.remove(); // Remove do DOM
-audioExplosoes("/audios/destruido_pod.mp3"); // Toca o som de destruição
+audioExplosoes("../audios/destruido_pod.mp3"); // Toca o som de destruição
 criarItemVida(`${posicaoHorizontal + (larguraNaveVida - 50) / 2}px`); // Centraliza o item de vida
 }
 
@@ -95,7 +95,7 @@ itemVida.className = 'item-vida';
 itemVida.style.position = 'absolute';
 itemVida.style.width = '50px';
 itemVida.style.height = '50px';
-itemVida.style.backgroundImage = "url('/imagens/vida1.png')";
+itemVida.style.backgroundImage = "url('../imagens/vida1.png')";
 itemVida.style.left = posicaoHorizontal; // Usa a posição horizontal ajustada para centralizar
 itemVida.style.top = '30px'; // Posição inicial no topo onde o pod foi destruído
 cenario.appendChild(itemVida);
@@ -118,7 +118,7 @@ itensVida.forEach(itemVida => {
     vida.textContent = `Vida: ${vidaAtual}`;
 
     // Remove o item de vida do cenário
-    const somVida = new Audio("/audios/vida.mp3");
+    const somVida = new Audio("../audios/vida.mp3");
     somVida.play();
     itemVida.remove();
     }

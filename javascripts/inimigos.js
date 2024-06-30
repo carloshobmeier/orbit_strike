@@ -8,7 +8,7 @@ chefe.style.width = "200px";
 chefe.style.height = "200px";
 
 // Caminhos das imagens para o chefão
-const imagensChefao = ["/imagens/chefao_vermelho.png", "/imagens/chefao_branco.png"];
+const imagensChefao = ["../imagens/chefao_vermelho.png", "../imagens/chefao_branco.png"];
 // Escolha aleatória entre as duas imagens
 const imagemEscolhida = imagensChefao[Math.floor(Math.random() * imagensChefao.length)];
 
@@ -29,7 +29,7 @@ inimigo.style.position = "absolute";
 inimigo.setAttribute("data-vida", 5);
 inimigo.style.width = "100px";
 inimigo.style.height = "100px";
-inimigo.style.backgroundImage = "url(/imagens/nave_preta.png)";
+inimigo.style.backgroundImage = "url(../imagens/nave_preta.png)";
 inimigo.style.backgroundPosition = "center";
 inimigo.style.backgroundRepeat = "no-repeat";
 inimigo.style.backgroundSize = "contain";
@@ -46,7 +46,7 @@ inimigo.setAttribute("data-vida", 5);  // Define a vida da nave
 inimigo.setAttribute("data-tipo", "rapida");  // Uma nova data attribute para identificar o tipo
 inimigo.style.width = "100px";
 inimigo.style.height = "100px";
-inimigo.style.backgroundImage = "url(/imagens/nave_amarela.png)";
+inimigo.style.backgroundImage = "url(../imagens/nave_amarela.png)";
 inimigo.style.backgroundPosition = "center";
 inimigo.style.backgroundRepeat = "no-repeat";
 inimigo.style.backgroundSize = "contain";
@@ -156,7 +156,7 @@ naveInimigaDestruida.className = "naveinimigadestruida";
 naveInimigaDestruida.style.position = "absolute";
 naveInimigaDestruida.style.width = isChefe ? "200px" : "100px"; // Dobro do tamanho para chefes
 naveInimigaDestruida.style.height = isChefe ? "200px" : "100px"; // Dobro do tamanho para chefes
-naveInimigaDestruida.style.backgroundImage = "url(/imagens/eliminado.gif)";
+naveInimigaDestruida.style.backgroundImage = "url(../imagens/eliminado.gif)";
 naveInimigaDestruida.style.backgroundPosition = "center";
 naveInimigaDestruida.style.backgroundRepeat = "no-repeat";
 naveInimigaDestruida.style.backgroundSize = "contain";
@@ -165,7 +165,7 @@ naveInimigaDestruida.style.top = posicaoTopNaveInimiga + "px";
 cenario.appendChild(naveInimigaDestruida);
 
 // Tocar áudio específico para chefes
-const audioFile = isChefe ? "/audios/destruido_chefao.mp3" : "/audios/destruido.mp3";
+const audioFile = isChefe ? "../audios/destruido_chefao.mp3" : "../audios/destruido.mp3";
 audioExplosoes(audioFile);
 
 setTimeout(() => { cenario.removeChild(naveInimigaDestruida); }, 1000);
@@ -177,7 +177,7 @@ explosaoNaveInimiga.className = "explosaonaveinimiga";
 explosaoNaveInimiga.style.position = "absolute";
 explosaoNaveInimiga.style.width = "100px";
 explosaoNaveInimiga.style.height = "100px";
-explosaoNaveInimiga.style.backgroundImage = "url(/imagens/passou.gif)";
+explosaoNaveInimiga.style.backgroundImage = "url(../imagens/passou.gif)";
 explosaoNaveInimiga.style.backgroundPosition = "center";
 explosaoNaveInimiga.style.backgroundRepeat = "no-repeat";
 explosaoNaveInimiga.style.backgroundSize = "contain";
@@ -201,7 +201,7 @@ audioExplosaoNaveInimiga.addEventListener("ended", () => {
 const audioPassou = () => {
 const audioPassouNaveInimiga = document.createElement("audio");
 audioPassouNaveInimiga.className = "audioexplosoes";
-audioPassouNaveInimiga.setAttribute("src", "/audios/erro.mp3");
+audioPassouNaveInimiga.setAttribute("src", "../audios/erro.mp3");
 audioPassouNaveInimiga.play();
 cenario.appendChild(audioPassouNaveInimiga);
 audioPassouNaveInimiga.addEventListener("ended", () => {
