@@ -29,7 +29,7 @@ inimigo.style.position = "absolute";
 inimigo.setAttribute("data-vida", 5);
 inimigo.style.width = "100px";
 inimigo.style.height = "100px";
-inimigo.style.backgroundImage = "url(../imagens/nave_preta.png)";
+inimigo.style.backgroundImage = "url(./imagens/nave_preta.png)";
 inimigo.style.backgroundPosition = "center";
 inimigo.style.backgroundRepeat = "no-repeat";
 inimigo.style.backgroundSize = "contain";
