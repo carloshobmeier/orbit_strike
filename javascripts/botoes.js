@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var audio = new Audio('../audios/botao.mp3');
+    var audio = new Audio('/audios/botao.mp3');
   
     var buttons = document.querySelectorAll('.btn-menu');
     buttons.forEach(function(button) {
