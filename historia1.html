@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story Page of the Game</title>
-    <link rel="stylesheet" href="estilos/style_index.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/imagens/favicon3.png">
-    <script src="/javascripts/script.js" defer></script>
-    <script src="/javascripts/botoes.js" defer></script>
-    <script src="/javascripts/gameover.js" defer></script>
-    <script src="/javascripts/iniciar.js" defer></script>
-    <script src="/javascripts/inimigos.js" defer></script>
-    <script src="/javascripts/jogador.js" defer></script>
-    <script src="/javascripts/modais.js" defer></script>
-    <script src="/javascripts/pause.js" defer></script>
-    <script src="/javascripts/pod_vida.js" defer></script>
-    <script src="/javascripts/selecao_fase.js" defer></script>
-    <script src="/javascripts/selecao_nave.js" defer></script>
-    <script src="/javascripts/tooltips.js" defer></script>
+    <link rel="stylesheet" href="./estilos/style_index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./imagens/favicon3.png">
+    <script src="./javascripts/script.js" defer></script>
+    <script src="./javascripts/botoes.js" defer></script>
+    <script src="./javascripts/gameover.js" defer></script>
+    <script src="./javascripts/iniciar.js" defer></script>
+    <script src="./javascripts/inimigos.js" defer></script>
+    <script src="./javascripts/jogador.js" defer></script>
+    <script src="./javascripts/modais.js" defer></script>
+    <script src="./javascripts/pause.js" defer></script>
+    <script src="./javascripts/pod_vida.js" defer></script>
+    <script src="./javascripts/selecao_fase.js" defer></script>
+    <script src="./javascripts/selecao_nave.js" defer></script>
+    <script src="./javascripts/tooltips.js" defer></script>
     <style>
         .story {
             display: none;
@@ -36,7 +36,7 @@
             <p>Com frotas de naves de guerra que se deslocam nas sombras do espaço, a Horda lança ataques furtivos devastadores contra assentamentos humanos, deixando um rastro de destruição.</p>
         </div>
         <div class="image-side">
-            <img src="imagens/invisible.jpg" alt="Game Story Image">
+            <img src="./imagens/invisible.jpg" alt="Game Story Image">
         </div>
         <button onclick="showStory('story2')" id="button1" class="btn-menu">>></button>
     </div>
@@ -49,7 +49,7 @@
             <p>Essa divisão é denominada 'orbit strike'.</p>
         </div>
         <div class="image-side">
-            <img src="imagens/invisible2.webp" alt="Game Story Image">
+            <img src="./imagens/invisible2.webp" alt="Game Story Image">
         </div>
         <button onclick="showStory('story1')" id="button2" class="btn-menu"><<</button>
         <button onclick="showStory('story3')" id="button1" class="btn-menu">>></button>
@@ -63,7 +63,7 @@
             <p>Lute com honra, comande com bravura, e deixe seu legado entre as estrelas!</p>
         </div>
         <div class="image-side">
-            <img src="imagens/vitoria.webp" alt="Game Story Image">
+            <img src="./imagens/vitoria.webp" alt="Game Story Image">
         </div>
         <button onclick="showStory('story2')" id="button2" class="btn-menu"><<</button>
         <button onclick="window.location.href = 'jogo.html';" id="button1" class="btn-menu">>></button>
@@ -80,7 +80,7 @@
         }
 
         function startAudio() {
-            const audioMenu = new Audio('/audios/MENUpowerful-gym-rock.mp3');
+            const audioMenu = new Audio('../audios/MENUpowerful-gym-rock.mp3');
             audioMenu.loop = true;
             audioMenu.play();
         }

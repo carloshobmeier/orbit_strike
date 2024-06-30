@@ -65,7 +65,7 @@ tiro.className = "tiro";
 tiro.style.position = "absolute";
 tiro.style.width = "30px";
 tiro.style.height = "30px";
-tiro.style.backgroundImage = "url('./imagens/tiro_verde.png')";
+tiro.style.backgroundImage = "url('../imagens/tiro_verde.png')";
 tiro.style.left = posicaoLeftTiro + "px";
 tiro.style.top = posicaoTopTiro + "px";
 cenario.appendChild(tiro);
@@ -74,7 +74,7 @@ audioTiros();
 const audioTiros = () => {
 const audioDoTiro = document.createElement("audio");
 audioDoTiro.className = "audiotiro";
-audioDoTiro.setAttribute("src", "/audios/tiro.mp3");
+audioDoTiro.setAttribute("src", "../audios/tiro.mp3");
 audioDoTiro.play();
 cenario.appendChild(audioDoTiro);
 audioDoTiro.addEventListener("ended", () => {
@@ -85,7 +85,7 @@ audioDoTiro.addEventListener("ended", () => {
 const audioColisao = () => {
 const audioDaColisao = document.createElement("audio");
 audioDaColisao.className = "audio_colisao";
-audioDaColisao.setAttribute("src", "/audios/lataria.mp3");
+audioDaColisao.setAttribute("src", "../audios/lataria.mp3");
 audioDaColisao.play();
 cenario.appendChild(audioDaColisao);
 audioDaColisao.addEventListener("ended", () => {
