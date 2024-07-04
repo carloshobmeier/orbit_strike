@@ -78,7 +78,7 @@ for (let i = 0; i < navaInimigas.length; i++) {
     }
 
     // Chama as funções de efeito visual e sonoro para todas as naves
-    explosaoNaveInimigaDestruida(nave.offsetLeft);
+    passouNaveInimiga(nave.offsetLeft);
     audioPassou();
 
     nave.remove();  // Remove a nave do DOM
@@ -171,7 +171,7 @@ audioExplosoes(audioFile);
 setTimeout(() => { cenario.removeChild(naveInimigaDestruida); }, 1000);
 }
 
-const explosaoNaveInimigaDestruida = (posicaoLeftNaveInimiga) => {
+const passouNaveInimiga = (posicaoLeftNaveInimiga) => {
 const explosaoNaveInimiga = document.createElement("div");
 explosaoNaveInimiga.className = "explosaonaveinimiga";
 explosaoNaveInimiga.style.position = "absolute";
